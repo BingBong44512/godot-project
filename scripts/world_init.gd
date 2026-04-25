@@ -28,21 +28,29 @@ func _unhandled_input(event):
 				print("Watered tile at ", pos)
 				return
 
-			var current_source = get_cell_source_id(pos)
-			if current_source == 1: # Already grass
+			if item == "grass":
+				var current_source = get_cell_source_id(pos)
+				if current_source == 1: # Already grass
+					return
+				
+				if "grass" in game:
+					game.grass += 1
+					GodLogic.inventory[item] -= 1
+					set_cell(pos, 1, Vector2i(0, 0)) # Set to Grass (Source 1)
+					get_tree().call_group("hud", "update_inventory")
 				return
 
+			# Handle animals
 			if item in game:
 				game.set(item, game.get(item) + 1)
 				GodLogic.inventory[item] -= 1
-				set_cell(pos, 1, Vector2i(0, 0)) # Set to Grass (Source 1)
 				
-				if item != "grass":
+				if item != "grass" and item != "water":
 					var instance = animal.instantiate()
 					instance.animal = item	
 					var mouse_pos = get_global_mouse_position()
-					instance.position.x =mouse_pos.x+randf()*50
-					instance.position.y =mouse_pos.y+randf()*50
+					instance.position.x = mouse_pos.x + randf() * 50 -25
+					instance.position.y = mouse_pos.y + randf() * 50 -25
 					add_child(instance)
 				get_tree().call_group("hud", "update_inventory")
 		else:
@@ -51,39 +59,66 @@ func _unhandled_input(event):
 func simulate_grass_life():
 	var game = get_tree().current_scene
 	if not game: return
-	
+
 	var tiles_to_die = []
 	var used_cells = get_used_cells()
-	
+
+	# Calculate weighted grazing load
+	var grazing_load = 0.0
+	for animal_type in GodLogic.grazing_rates:
+		if animal_type in game:
+			grazing_load += game.get(animal_type) * GodLogic.grazing_rates[animal_type]
+
 	for pos in used_cells:
-		if get_cell_source_id(pos) == 1: # If it's Grass
+		var source_id = get_cell_source_id(pos)
+
+		if source_id == 1: # Grass
 			var neighbors = get_surrounding_cells(pos)
 			var grass_neighbors = 0
 			for n in neighbors:
-				if get_cell_source_id(n) == 1:
+				var neighbor_source = get_cell_source_id(n)
+				if neighbor_source == 1:
 					grass_neighbors += 1
-			
-			var is_edge = grass_neighbors < 4 # Arbitrary edge definition
-			
+				elif neighbor_source == 0 or neighbor_source == 2: # Wasteland or Dead Grass
+					# Spreading logic
+					var n_watered = false
+					if GodLogic.watered_tiles.has(n):
+						if Time.get_ticks_msec() - GodLogic.watered_tiles[n] < 300000:
+							n_watered = true
+
+					var spread_chance = 0.02 if n_watered else 0.002
+					if randf() < spread_chance:
+						set_cell(n, 1, Vector2i(0, 0))
+						if "grass" in game:
+							game.grass += 1
+
+			var is_edge = grass_neighbors < 3
 			var is_watered = false
 			if GodLogic.watered_tiles.has(pos):
 				var watered_at = GodLogic.watered_tiles[pos]
-				var now = Time.get_ticks_msec()
-				# 5 minutes = 300,000 milliseconds
-				if now - watered_at < 300000:
+				if Time.get_ticks_msec() - watered_at < 300000:
 					is_watered = true
 				else:
-					GodLogic.watered_tiles.erase(pos) # Water expired
-			
-			# Death conditions:
-			# 1. Edge of patch and not watered
-			# 2. Too many animals (Overgrazing) - using health as proxy for animal density
-			var animal_count = game.toad + game.elk + game.moose + game.snake
-			var overgrazed = animal_count > (game.grass * 2) and randf() > 0.5
-			
-			if (is_edge and not is_watered) or overgrazed:
+					GodLogic.watered_tiles.erase(pos)
+
+			# Overgrazing check
+			var overgrazed = grazing_load > (game.grass * 2.5) and randf() > 0.7
+
+			if overgrazed:
 				tiles_to_die.append(pos)
-	
+				GodLogic.edge_death_timers.erase(pos)
+			elif is_edge and not is_watered:
+				if not GodLogic.edge_death_timers.has(pos):
+					GodLogic.edge_death_timers[pos] = Time.get_ticks_msec()
+
+				# 2 minutes = 120,000 milliseconds
+				if Time.get_ticks_msec() - GodLogic.edge_death_timers[pos] >= 120000:
+					tiles_to_die.append(pos)
+					GodLogic.edge_death_timers.erase(pos)
+			else:
+				# Reset timer if it's no longer an edge or is now watered
+				GodLogic.edge_death_timers.erase(pos)
+
 	for pos in tiles_to_die:
 		set_cell(pos, 2, Vector2i(1, 0)) # Set to Dead Grass (Source 2, Tile 1,0)
 		if "grass" in game:

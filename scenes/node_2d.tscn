@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dk2i70r2vqm38" path="res://Resources/grass.jpg" id="5_hh0fu"]
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="6_3m5ht"]
 [ext_resource type="Script" uid="uid://bs8thadhhmf4l" path="res://scripts/hotbar.gd" id="6_hotbar"]
-[ext_resource type="Script" path="res://scripts/shop_ui.gd" id="8_shop"]
+[ext_resource type="Script" uid="uid://cw8gt8q5jvi1m" path="res://scripts/shop_ui.gd" id="8_shop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wrs"]
 texture = ExtResource("2_4dvvg")
@@ -418,7 +418,7 @@ offset_left = -1.0
 offset_top = 2.0
 offset_right = 1147.0
 offset_bottom = 532.0
-text = "It is the year 6767. Humanity has long since died out due to mismanagement of the land and water. Now, it is up to you to revive earth from the barren landscape it is now to "
+text = "It is the year 6767. Humanity has long since died out due to mismanagement of the land and water. It is up to you to revive earth from the barren landscape it is now to a lush, thriving landscape"
 autowrap_mode = 3
 script = ExtResource("3_rnjyy")
 
