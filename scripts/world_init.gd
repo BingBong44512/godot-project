@@ -4,6 +4,8 @@ var animal = preload("res://scenes/animal.tscn")
 var sim_timer: float = 0.0
 const SIM_INTERVAL: float = 3.0 # Simulate every 3 seconds
 
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
 func _ready():
 	GodLogic.generate_world(self)
 
@@ -24,8 +26,13 @@ func _unhandled_input(event):
 			if item == "water":
 				GodLogic.watered_tiles[pos] = Time.get_ticks_msec()
 				GodLogic.inventory[item] -= 1
+				gpu_particles_2d.position = get_global_mouse_position()
+				gpu_particles_2d.emitting = true
 				get_tree().call_group("hud", "update_inventory")
 				print("Watered tile at ", pos)
+				await get_tree().create_timer(2.0).timeout
+				gpu_particles_2d.emitting = false
+				
 				return
 
 			if item == "grass":

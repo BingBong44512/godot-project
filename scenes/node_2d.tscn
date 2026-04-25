@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 [ext_resource type="Texture2D" uid="uid://db5nyx0pn2hfj" path="res://Resources/wasteland.jpg" id="2_4dvvg"]
-[ext_resource type="Script" uid="uid://cgwh64d558lf1" path="res://scripts/pressed.gd" id="3_rnjyy"]
 [ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="4_04qyp"]
 [ext_resource type="Script" uid="uid://cxs4cxxoxo04w" path="res://scripts/label_update.gd" id="5_04qyp"]
 [ext_resource type="Texture2D" uid="uid://dk2i70r2vqm38" path="res://Resources/grass.jpg" id="5_hh0fu"]
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="6_3m5ht"]
 [ext_resource type="Script" uid="uid://bs8thadhhmf4l" path="res://scripts/hotbar.gd" id="6_hotbar"]
 [ext_resource type="Script" uid="uid://cw8gt8q5jvi1m" path="res://scripts/shop_ui.gd" id="8_shop"]
+[ext_resource type="Texture2D" uid="uid://c432bimixvln0" path="res://Resources/water.png" id="9_dubn7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wrs"]
 texture = ExtResource("2_4dvvg")
@@ -294,6 +294,12 @@ sources/0 = SubResource("TileSetAtlasSource_j7wrs")
 sources/1 = SubResource("TileSetAtlasSource_dubn7")
 sources/2 = SubResource("TileSetAtlasSource_j7wrs")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_08kqv"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.156
+gravity = Vector3(0, 98, 0)
+
 [node name="Game" type="Node2D" unique_id=423656970]
 script = ExtResource("1_4vge2")
 
@@ -403,6 +409,16 @@ text = "Back to Earth"
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAQAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AQAAAAAAAAD+/wEAAQAAAAAAAAABAP//AAAAAAAAAAABAP7/AQAAAAAAAAABAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fws66")
 script = ExtResource("6_3m5ht")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TileMapLayer" unique_id=1720882659]
+emitting = false
+texture = ExtResource("9_dubn7")
+lifetime = 13.54
+speed_scale = 5.63
+explosiveness = 0.07
+randomness = 0.09
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_08kqv")
 
 [node name="animal" parent="." unique_id=1901912740 instance=ExtResource("4_04qyp")]
 visibility_layer = 2
