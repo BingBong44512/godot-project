@@ -1,17 +1,14 @@
-[gd_scene format=4 uid="uid://j8754bon6jec"]
+[gd_scene format=3 uid="uid://j8754bon6jec"]
 
 [ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 [ext_resource type="Texture2D" uid="uid://db5nyx0pn2hfj" path="res://Resources/wasteland.jpg" id="2_4dvvg"]
-[ext_resource type="Script" uid="uid://cgwh64d558lf1" path="res://scripts/pressed.gd" id="3_rnjyy"]
-[ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="4_04qyp"]
+[ext_resource type="Script" path="res://scripts/pressed.gd" id="3_rnjyy"]
+[ext_resource type="PackedScene" path="res://scenes/animal.tscn" id="4_04qyp"]
 [ext_resource type="Script" uid="uid://cxs4cxxoxo04w" path="res://scripts/label_update.gd" id="5_04qyp"]
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="5_world"]
-[ext_resource type="Script" uid="uid://bs8thadhhmf4l" path="res://scripts/hotbar.gd" id="6_hotbar"]
+[ext_resource type="Script" path="res://scripts/hotbar.gd" id="6_hotbar"]
 [ext_resource type="Script" uid="uid://cw8gt8q5jvi1m" path="res://scripts/shop_ui.gd" id="8_shop"]
-[ext_resource type="Script" path="res://scripts/label_update.gd" id="5_04qyp"]
-[ext_resource type="Texture2D" uid="uid://dk2i70r2vqm38" path="res://Resources/grass.jpg" id="5_hh0fu"]
-[ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="6_3m5ht"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wrs"]
 texture = ExtResource("2_4dvvg")
@@ -273,27 +270,9 @@ texture_region_size = Vector2i(256, 256)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dubn7"]
-texture = ExtResource("5_hh0fu")
-margins = Vector2i(768, 512)
-texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_fws66"]
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_j7wrs")
-sources/1 = SubResource("TileSetAtlasSource_dubn7")
 
 [node name="Game" type="Node2D" unique_id=423656970]
 script = ExtResource("1_4vge2")
@@ -403,9 +382,8 @@ layout_mode = 2
 text = "Back to Earth"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1080141333]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAQAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AQAAAAAAAAD+/wEAAQAAAAAAAAABAP//AAAAAAAAAAABAP7/AQAAAAAAAAABAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fws66")
-script = ExtResource("6_3m5ht")
+script = ExtResource("5_world")
 
 [node name="animal" parent="." unique_id=1901912740 instance=ExtResource("4_04qyp")]
 visibility_layer = 2

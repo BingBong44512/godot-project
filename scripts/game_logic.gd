@@ -14,6 +14,9 @@ var moose := 0
 var elk := 0
 var snake :=0
 var grass :=0
+var money := 100
+var timer := 0.0
+
 @export var health:=0:
 	get:
 		var energy = SUNLIGHT * grass
@@ -34,4 +37,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	timer +=delta
+	if timer>=10.0:
+		timer =0
+		money += health/5
+	
