@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 [ext_resource type="Texture2D" uid="uid://db5nyx0pn2hfj" path="res://Resources/wasteland.jpg" id="2_4dvvg"]
-[ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="4_04qyp"]
 [ext_resource type="Script" uid="uid://cxs4cxxoxo04w" path="res://scripts/label_update.gd" id="5_04qyp"]
 [ext_resource type="Texture2D" uid="uid://dk2i70r2vqm38" path="res://Resources/grass.jpg" id="5_hh0fu"]
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="6_3m5ht"]
@@ -419,10 +418,5 @@ explosiveness = 0.07
 randomness = 0.09
 collision_base_size = 0.0
 process_material = SubResource("ParticleProcessMaterial_08kqv")
-
-[node name="animal" parent="." unique_id=1901912740 instance=ExtResource("4_04qyp")]
-visibility_layer = 2
-z_index = 1
-position = Vector2(266, 207)
 
 [connection signal="pressed" from="HUD/OpenShop" to="HUD/ShopGUI" method="toggle"]
