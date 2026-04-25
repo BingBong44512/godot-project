@@ -19,8 +19,9 @@ func _unhandled_input(event):
 				if item != "grass":
 					var instance = animal.instantiate()
 					instance.animal = item	
-					instance.position.x =randf()*200
-					instance.position.y =randf()*200
+					var mouse_pos = get_global_mouse_position()
+					instance.position.x =mouse_pos.x+randf()*50
+					instance.position.y =mouse_pos.y+randf()*50
 					add_child(instance)
 				get_tree().call_group("hud", "update_inventory")
 				print("Placed ", item, ". Remaining: ", GodLogic.inventory[item])
