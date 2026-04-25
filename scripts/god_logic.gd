@@ -24,7 +24,7 @@ var grazing_rates = {
 
 var shop_data = {
 	"grass": {"price": 10, "desc": "Basic vegetation to start the ecosystem."},
-	"water": {"price": 2, "desc": "Hydrates the land. Prevents grass from dying at the edges."},
+	"water": {"price": 2, "desc": "Sprays water and hydrates the land. Prevents grass from dying."},
 	"toad": {"price": 5, "desc": "Small amphibians. Good for insect control."},
 	"elk": {"price": 35, "desc": "Majestic herbivores that graze the plains."},
 	"moose": {"price": 50, "desc": "Tough grazers that can handle harsh lands."},
