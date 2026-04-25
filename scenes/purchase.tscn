@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://nk2b6i0ijg0q"]
+
+[ext_resource type="Script" uid="uid://em14wwpppi7d" path="res://buy.gd" id="1_ibjei"]
+
+[node name="Purchase" type="Control" unique_id=608744546]
+layout_mode = 3
+offset_right = 120.0
+offset_bottom = 77.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=165318469]
+
+[node name="Button" type="Button" parent="." unique_id=2145247233]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 42.0
+offset_right = 112.0
+offset_bottom = 73.0
+text = "Purchase"
+script = ExtResource("1_ibjei")
