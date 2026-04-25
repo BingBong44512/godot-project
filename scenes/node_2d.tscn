@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://j8754bon6jec"]
 
-[ext_resource type="Script" path="res://scripts/game_logic.gd" id="1_4vge2"]
+[ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
-[ext_resource type="PackedScene" path="res://scenes/animal.tscn" id="2_4dvvg"]
-[ext_resource type="Script" path="res://scripts/pressed.gd" id="3_rnjyy"]
+[ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="2_4dvvg"]
+[ext_resource type="Script" uid="uid://cgwh64d558lf1" path="res://scripts/pressed.gd" id="3_rnjyy"]
+[ext_resource type="Script" uid="uid://cxs4cxxoxo04w" path="res://scripts/label_update.gd" id="5_04qyp"]
 
 [node name="Game" type="Node2D" unique_id=423656970]
 script = ExtResource("1_4vge2")
@@ -14,6 +15,16 @@ position = Vector2(728, 378)
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=908428919]
 position = Vector2(-154, -53)
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D" unique_id=422806178]
+offset_left = -497.0
+offset_top = -251.0
+offset_right = -396.0
+offset_bottom = -184.0
+text = "Health: 0"
+script = ExtResource("5_04qyp")
+metadata/_edit_use_anchors_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1080141333]
 
@@ -21,7 +32,9 @@ position_smoothing_enabled = true
 position = Vector2(266, 207)
 
 [node name="Button" type="Button" parent="." unique_id=300377524]
-offset_right = 1148.0
-offset_bottom = 530.0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 1154.0
+offset_bottom = 648.0
 text = "damn hit the griddy"
 script = ExtResource("3_rnjyy")
