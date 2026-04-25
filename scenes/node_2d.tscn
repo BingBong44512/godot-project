@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="6_3m5ht"]
 [ext_resource type="Script" uid="uid://bs8thadhhmf4l" path="res://scripts/hotbar.gd" id="6_hotbar"]
 [ext_resource type="Script" uid="uid://cw8gt8q5jvi1m" path="res://scripts/shop_ui.gd" id="8_shop"]
+[ext_resource type="Texture2D" uid="uid://ctcvm70s32xh3" path="res://Resources/grass_dead.png" id="9_dead"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wrs"]
 texture = ExtResource("2_4dvvg")
@@ -288,11 +289,16 @@ texture_region_size = Vector2i(256, 256)
 2:2/0 = 0
 3:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dead"]
+texture = ExtResource("9_dead")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_fws66"]
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_j7wrs")
 sources/1 = SubResource("TileSetAtlasSource_dubn7")
-sources/2 = SubResource("TileSetAtlasSource_j7wrs")
+sources/2 = SubResource("TileSetAtlasSource_dead")
 
 [node name="Game" type="Node2D" unique_id=423656970]
 script = ExtResource("1_4vge2")

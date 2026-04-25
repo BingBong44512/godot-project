@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IntroPanel" type="PanelContainer" parent="Control" unique_id="IntroPanel"]
+[node name="IntroPanel" type="PanelContainer" parent="Control" unique_id=1246864050]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,24 +21,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/IntroPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/IntroPanel" unique_id=1023098347]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/IntroPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/IntroPanel/MarginContainer" unique_id=1231669267]
 layout_mode = 2
 alignment = 1
 
-[node name="IntroLabel" type="Label" parent="Control/IntroPanel/MarginContainer/VBoxContainer"]
+[node name="IntroLabel" type="Label" parent="Control/IntroPanel/MarginContainer/VBoxContainer" unique_id=771214521]
 layout_mode = 2
 text = "It is the year 6767. Humanity has long since died out due to mismanagement of the land and water. It is up to you to revive earth from the barren landscape it is now to a lush, thriving landscape"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="NextButton" type="Button" parent="Control/IntroPanel/MarginContainer/VBoxContainer"]
+[node name="NextButton" type="Button" parent="Control/IntroPanel/MarginContainer/VBoxContainer" unique_id=500242966]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Next"
@@ -89,4 +89,3 @@ ticks_position = 3
 
 [connection signal="pressed" from="Control/IntroPanel/MarginContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Control/ScalePanel/PanelContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-

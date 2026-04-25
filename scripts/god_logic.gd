@@ -35,14 +35,25 @@ var shop_data = {
 	"wolf": {"price": 25, "desc": "Pack hunters that keep populations in check."}
 }
 
+var wasteland_id = 0
+var grass_id = 1
+var dead_grass_id = 2
+
 func start_game(size: int):
 	wasteland_size = size
 	get_tree().change_scene_to_file("res://scenes/node_2d.tscn")
 
 func generate_world(layer: TileMapLayer):
 	if not layer or not layer.tile_set: return
-	var sid = layer.tile_set.get_source_id(0)
+	
+	# Mapping based on TileSet indices
+	wasteland_id = layer.tile_set.get_source_id(0)
+	grass_id = layer.tile_set.get_source_id(1)
+	dead_grass_id = layer.tile_set.get_source_id(2)
+	
+	print("IDs Resolved - Wasteland: ", wasteland_id, " Grass: ", grass_id, " Dead: ", dead_grass_id)
+	
 	layer.clear()
 	for x in range(-wasteland_size, wasteland_size):
 		for y in range(-wasteland_size, wasteland_size):
-			layer.set_cell(Vector2i(x, y), sid, Vector2i(0, 0))
+			layer.set_cell(Vector2i(x, y), wasteland_id, Vector2i(0, 0))
