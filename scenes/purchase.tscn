@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://nk2b6i0ijg0q"]
+[gd_scene format=3 uid="uid://dyin05rjihgpw"]
 
-[ext_resource type="Script" uid="uid://em14wwpppi7d" path="res://buy.gd" id="1_ibjei"]
+[ext_resource type="Script" uid="uid://em14wwpppi7d" path="res://scripts/buy.gd" id="1_ibjei"]
 
 [node name="Purchase" type="Control" unique_id=608744546]
 layout_mode = 3
+anchors_preset = 0
 offset_right = 120.0
 offset_bottom = 77.0
 
