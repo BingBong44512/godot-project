@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 [ext_resource type="Texture2D" uid="uid://db5nyx0pn2hfj" path="res://Resources/wasteland.jpg" id="2_4dvvg"]
-[ext_resource type="Script" path="res://scripts/pressed.gd" id="3_rnjyy"]
-[ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="4_04qyp"]
+[ext_resource type="Script" uid="uid://cgwh64d558lf1" path="res://scripts/pressed.gd" id="3_rnjyy"]
 [ext_resource type="Script" uid="uid://cxs4cxxoxo04w" path="res://scripts/label_update.gd" id="5_04qyp"]
 [ext_resource type="Texture2D" uid="uid://dk2i70r2vqm38" path="res://Resources/grass.jpg" id="5_hh0fu"]
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://scripts/world_init.gd" id="6_3m5ht"]
 [ext_resource type="Script" uid="uid://bs8thadhhmf4l" path="res://scripts/hotbar.gd" id="6_hotbar"]
-[ext_resource type="Script" path="res://scripts/shop_ui.gd" id="8_shop"]
+[ext_resource type="Script" uid="uid://cw8gt8q5jvi1m" path="res://scripts/shop_ui.gd" id="8_shop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wrs"]
 texture = ExtResource("2_4dvvg")
@@ -405,11 +404,6 @@ text = "Back to Earth"
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAQAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD///7/AQAAAAAAAAD+/wEAAQAAAAAAAAABAP//AAAAAAAAAAABAP7/AQAAAAAAAAABAAAAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_fws66")
 script = ExtResource("6_3m5ht")
-
-[node name="animal" parent="." unique_id=1901912740 instance=ExtResource("4_04qyp")]
-visibility_layer = 2
-z_index = 1
-position = Vector2(266, 207)
 
 [node name="Button" type="Button" parent="." unique_id=300377524]
 visibility_layer = 512
