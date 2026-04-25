@@ -14,6 +14,7 @@ var bison := 0
 var elk := 0
 var snake :=0
 var grass :=0
+var money := 100
 @export var health:=0:
 	get:
 		var energy = SUNLIGHT * grass
