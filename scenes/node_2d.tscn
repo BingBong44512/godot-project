@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
-[ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="2_4dvvg"]
-[ext_resource type="Script" uid="uid://cgwh64d558lf1" path="res://scripts/pressed.gd" id="3_rnjyy"]
-[ext_resource type="Script" uid="uid://cxs4cxxoxo04w" path="res://scripts/label_update.gd" id="5_04qyp"]
 [ext_resource type="Texture2D" uid="uid://db5nyx0pn2hfj" path="res://Resources/wasteland.jpg" id="2_4dvvg"]
 [ext_resource type="Script" path="res://scripts/pressed.gd" id="3_rnjyy"]
 [ext_resource type="PackedScene" path="res://scenes/animal.tscn" id="4_04qyp"]
+[ext_resource type="Script" path="res://scripts/label_update.gd" id="5_04qyp"]
 [ext_resource type="Script" uid="uid://cf4bxjsspponu" path="res://world_init.gd" id="5_world"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7wrs"]
@@ -284,14 +282,13 @@ position = Vector2(728, 378)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=908428919]
 position = Vector2(-154, -53)
-position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
 [node name="Label" type="Label" parent="CharacterBody2D/Camera2D" unique_id=422806178]
-offset_left = -497.0
-offset_top = -251.0
-offset_right = -396.0
-offset_bottom = -184.0
+offset_left = -559.0
+offset_top = -311.0
+offset_right = -458.0
+offset_bottom = -244.0
 text = "Health: 0"
 script = ExtResource("5_04qyp")
 metadata/_edit_use_anchors_ = true
@@ -308,7 +305,9 @@ position = Vector2(266, 207)
 [node name="Button" type="Button" parent="." unique_id=300377524]
 visibility_layer = 512
 z_index = 2
-offset_right = 1148.0
-offset_bottom = 530.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1149.0
+offset_bottom = 533.0
 text = "It is the year 6767"
 script = ExtResource("3_rnjyy")
