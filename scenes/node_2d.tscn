@@ -2,18 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6e84v"]
-distance = -1391.0
-
 [node name="Game" type="Node2D" unique_id=423656970]
 
 [node name="CharacterBody2D" parent="." unique_id=672844821 instance=ExtResource("1_6e84v")]
-position = Vector2(165, 150)
+position = Vector2(728, 378)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1080141333]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=908428919]
-position = Vector2(579, 325)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1832573734]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1193283369]
-shape = SubResource("WorldBoundaryShape2D_6e84v")
+position = Vector2(729, 379)
+position_smoothing_enabled = true
