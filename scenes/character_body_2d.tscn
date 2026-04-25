@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://d2l23p2w34la5"]
 
 [ext_resource type="Texture2D" uid="uid://da4qou5yb25gj" path="res://icon.svg" id="1_f50pn"]
+[ext_resource type="Script" uid="uid://dfkm067awobot" path="res://scripts/character_body_2d.gd" id="1_g2brh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f50pn"]
 size = Vector2(123, 123)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=672844821]
+script = ExtResource("1_g2brh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=891530305]
 position = Vector2(71, -67)
