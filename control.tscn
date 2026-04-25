@@ -58,4 +58,4 @@ value = 10.0
 tick_count = 10
 ticks_position = 3
 
-[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartButton" to="Control" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
