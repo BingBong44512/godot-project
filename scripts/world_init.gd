@@ -1,5 +1,7 @@
 extends TileMapLayer
 
+var animal = preload("res://scenes/animal.tscn")
+
 func _ready():
 	GodLogic.generate_world(self)
 
@@ -13,6 +15,13 @@ func _unhandled_input(event):
 			if item in game:
 				game.set(item, game.get(item) + 1)
 				GodLogic.inventory[item] -= 1
+				
+				if item != "grass":
+					var instance = animal.instantiate()
+					instance.animal = item	
+					instance.position.x =randf()*200
+					instance.position.y =randf()*200
+					add_child(instance)
 				get_tree().call_group("hud", "update_inventory")
 				print("Placed ", item, ". Remaining: ", GodLogic.inventory[item])
 		else:

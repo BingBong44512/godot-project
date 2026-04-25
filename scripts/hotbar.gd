@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-var items = ["grass", "toads", "elk", "bison", "snake", "eagle", "owl", "bear", "wolf"]
+var items = ["grass", "toad", "elk", "moose", "snake", "eagle", "owl", "bear", "wolf"]
 var selected = 0
 
 func _ready():
