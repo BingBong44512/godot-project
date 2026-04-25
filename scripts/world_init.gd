@@ -13,48 +13,68 @@ func _process(delta):
 		sim_timer = 0.0
 		simulate_grass_life()
 
+var is_dragging: bool = false
+var last_drag_pos: Vector2i = Vector2i(-999, -999)
+
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_dragging = event.pressed
+			if is_dragging:
+				handle_action(local_to_map(get_local_mouse_position()))
+	
+	if event is InputEventMouseMotion and is_dragging:
 		var pos = local_to_map(get_local_mouse_position())
-		var item = GodLogic.selected_item
-		if item == "" or not item in GodLogic.inventory: return
-		
-		var game = get_tree().current_scene
-		if GodLogic.inventory[item] > 0:
-			if item == "water":
-				GodLogic.watered_tiles[pos] = Time.get_ticks_msec()
+		if pos != last_drag_pos:
+			handle_action(pos)
+			last_drag_pos = pos
+
+func handle_action(pos: Vector2i):
+	var item = GodLogic.selected_item
+	if item == "" or not item in GodLogic.inventory: return
+	
+	var game = get_tree().current_scene
+	if GodLogic.inventory[item] > 0:
+		if item == "water":
+			# Only water if not already watered recently (cooldown per tile)
+			var now = Time.get_ticks_msec()
+			if not GodLogic.watered_tiles.has(pos) or (now - GodLogic.watered_tiles[pos] > 5000):
+				GodLogic.watered_tiles[pos] = now
 				GodLogic.inventory[item] -= 1
 				get_tree().call_group("hud", "update_inventory")
 				print("Watered tile at ", pos)
-				return
+			return
 
-			if item == "grass":
-				var current_source = get_cell_source_id(pos)
-				if current_source == GodLogic.grass_id: # Already grass
-					return
-				
-				if "grass" in game:
-					game.grass += 1
-					GodLogic.inventory[item] -= 1
-					set_cell(pos, GodLogic.grass_id, Vector2i(0, 0))
-					get_tree().call_group("hud", "update_inventory")
+		if item == "grass":
+			var current_source = get_cell_source_id(pos)
+			if current_source == GodLogic.grass_id: # Already grass
 				return
-
-			# Handle animals
-			if item in game:
-				game.set(item, game.get(item) + 1)
+			
+			if "grass" in game:
+				game.grass += 1
 				GodLogic.inventory[item] -= 1
-				
-				if item != "grass" and item != "water":
-					var instance = animal.instantiate()
-					instance.animal = item	
-					var mouse_pos = get_global_mouse_position()
-					instance.position.x = mouse_pos.x + randf() * 50 -25
-					instance.position.y = mouse_pos.y + randf() * 50 -25
-					add_child(instance)
+				set_cell(pos, GodLogic.grass_id, Vector2i(0, 0))
 				get_tree().call_group("hud", "update_inventory")
-		else:
+			return
+
+		# Handle animals (usually better one-by-one, but we'll allow dragging)
+		if item in game:
+			game.set(item, game.get(item) + 1)
+			GodLogic.inventory[item] -= 1
+			
+			if item != "grass" and item != "water":
+				var instance = animal.instantiate()
+				instance.animal = item	
+				var mouse_pos = get_global_mouse_position()
+				instance.position.x = mouse_pos.x + randf() * 50 - 25
+				instance.position.y = mouse_pos.y + randf() * 50 - 25
+				add_child(instance)
+			get_tree().call_group("hud", "update_inventory")
+	else:
+		# Only print "Out of" once per drag to avoid spam
+		if last_drag_pos == Vector2i(-999, -999):
 			print("Out of ", item, "!")
+
 
 func simulate_grass_life():
 	var game = get_tree().current_scene

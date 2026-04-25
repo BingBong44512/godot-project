@@ -42,6 +42,11 @@ func _physics_process(delta: float) -> void:
 	move_towards_thought(delta)
 	check_interactions()
 
+func move_towards_thought(delta):
+	if thought:
+		var dir = (thought - position).normalized()
+		position += dir * SPEED * delta
+
 func find_new_thought():
 	# Predators look for prey
 	if is_predator() and hunger < 80:
