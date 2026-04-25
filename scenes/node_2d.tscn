@@ -297,5 +297,5 @@ visibility_layer = 512
 z_index = 2
 offset_right = 1148.0
 offset_bottom = 530.0
-text = "damn hit the griddy"
+text = "It is the year 6767"
 script = ExtResource("3_rnjyy")
