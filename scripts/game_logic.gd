@@ -10,17 +10,17 @@ var eagle:=0
 var owl:=0
 var bear:=0
 var wolf := 0
-var bison := 0
+var moose := 0
 var elk := 0
 var snake :=0
 var grass :=0
 @export var health:=0:
 	get:
 		var energy = SUNLIGHT * grass
-		if P1 * (toads+elk+bison+snake) > energy:
-			energy -= P1 * (toads+elk+bison+snake)
+		if P1 * (toads+elk+moose+snake) > energy:
+			energy -= P1 * (toads+elk+moose+snake)
 		else:
-			energy += P1 * (toads+elk+bison+snake)
+			energy += P1 * (toads+elk+moose+snake)
 		if P2 * (eagle+owl+bear+wolf)> energy:
 			energy -= P2 * (eagle+owl+bear+wolf)
 		else:	
