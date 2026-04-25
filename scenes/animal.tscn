@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://glnl40sk6j1f" path="res://scripts/movement.gd" id="1_8dtbx"]
 [ext_resource type="Texture2D" uid="uid://ckjl44a4rbmd2" path="res://Resources/Animals/preview_nowatermark (1).png" id="2_8dtbx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsu6n"]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybi86"]
 atlas = ExtResource("2_8dtbx")
 region = Rect2(114, 560, 32, 32)
@@ -104,12 +102,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="RigidBody2D" type="RigidBody2D" unique_id=382702866]
-gravity_scale = 0.0
+[node name="Node2D" type="Node2D" unique_id=1842779961]
 script = ExtResource("1_8dtbx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=155289872]
-shape = SubResource("RectangleShape2D_rsu6n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613736816]
 sprite_frames = SubResource("SpriteFrames_fiknr")

@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Node2D
 
 const SPEED = 60
 var thought
