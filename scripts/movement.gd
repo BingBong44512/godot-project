@@ -4,7 +4,7 @@ const SPEED = 60
 var thought
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if !(thought) or (position.x<thought.x+10 and position.x>thought.x-10  and position.y<thought.y+10 and position.y>thought.y-10):
 		thought = Vector2(randi()%1000,randi()%1000)
 	if thought.x>position.x:

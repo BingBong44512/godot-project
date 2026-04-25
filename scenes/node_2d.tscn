@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 [ext_resource type="PackedScene" uid="uid://fg0hlnrmfif" path="res://scenes/animal.tscn" id="2_4dvvg"]
+[ext_resource type="Script" uid="uid://cgwh64d558lf1" path="res://scripts/pressed.gd" id="3_rnjyy"]
 
 [node name="Game" type="Node2D" unique_id=423656970]
 
@@ -16,3 +17,9 @@ position_smoothing_enabled = true
 
 [node name="animal" parent="." unique_id=1901912740 instance=ExtResource("2_4dvvg")]
 position = Vector2(266, 207)
+
+[node name="Button" type="Button" parent="." unique_id=300377524]
+offset_right = 1148.0
+offset_bottom = 530.0
+text = "damn hit the griddy"
+script = ExtResource("3_rnjyy")
