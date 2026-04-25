@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://j8754bon6jec"]
 
-[ext_resource type="Script" uid="uid://bc25fpyxgqsvh" path="res://scripts/game_logic.gd" id="1_4vge2"]
+[ext_resource type="Script" path="res://scripts/game_logic.gd" id="1_4vge2"]
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
-[ext_resource type="PackedScene" uid="uid://bwa7jp3tc03d" path="res://scenes/animal.tscn" id="2_4dvvg"]
+[ext_resource type="PackedScene" path="res://scenes/animal.tscn" id="2_4dvvg"]
 [ext_resource type="Script" path="res://scripts/pressed.gd" id="3_rnjyy"]
 
 [node name="Game" type="Node2D" unique_id=423656970]
