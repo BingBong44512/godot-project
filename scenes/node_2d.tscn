@@ -302,20 +302,18 @@ visibility_layer = 256
 z_index = 2
 position = Vector2(728, 378)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=908428919]
-position = Vector2(-154, -53)
-position_smoothing_speed = 2.0
-
-[node name="Label" type="Label" parent="CharacterBody2D/Camera2D" unique_id=422806178]
-offset_left = -559.0
-offset_top = -311.0
-offset_right = -458.0
-offset_bottom = -244.0
-text = "Health: 0"
-script = ExtResource("5_04qyp")
-metadata/_edit_use_anchors_ = true
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=2000192469]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=555666777]
+
+[node name="HealthMoneyLabel" type="Label" parent="HUD" unique_id=422806178]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 121.0
+offset_bottom = 87.0
+text = "Health: 0
+Money: $0"
+script = ExtResource("5_04qyp")
 
 [node name="Hotbar" type="HBoxContainer" parent="HUD" unique_id=111222333]
 anchors_preset = 7
@@ -410,16 +408,5 @@ script = ExtResource("6_3m5ht")
 visibility_layer = 2
 z_index = 1
 position = Vector2(266, 207)
-
-[node name="Button" type="Button" parent="." unique_id=300377524]
-visibility_layer = 512
-z_index = 2
-offset_left = -1.0
-offset_top = 2.0
-offset_right = 1147.0
-offset_bottom = 532.0
-text = "It is the year 6767. Humanity has long since died out due to mismanagement of the land and water. It is up to you to revive earth from the barren landscape it is now to a lush, thriving landscape"
-autowrap_mode = 3
-script = ExtResource("3_rnjyy")
 
 [connection signal="pressed" from="HUD/OpenShop" to="HUD/ShopGUI" method="toggle"]

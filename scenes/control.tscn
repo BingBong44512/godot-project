@@ -10,14 +10,41 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = 5.0
-offset_right = -45.0
-offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=2069602215]
+[node name="IntroPanel" type="PanelContainer" parent="Control" unique_id="IntroPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/IntroPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/IntroPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="IntroLabel" type="Label" parent="Control/IntroPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "It is the year 6767. Humanity has long since died out due to mismanagement of the land and water. It is up to you to revive earth from the barren landscape it is now to a lush, thriving landscape"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NextButton" type="Button" parent="Control/IntroPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Next"
+
+[node name="ScalePanel" type="CenterContainer" parent="Control" unique_id=2069602215]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,33 +58,35 @@ offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/CenterContainer" unique_id=153905347]
+[node name="PanelContainer" type="PanelContainer" parent="Control/ScalePanel" unique_id=153905347]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/CenterContainer/PanelContainer" unique_id=847796825]
+[node name="MarginContainer" type="MarginContainer" parent="Control/ScalePanel/PanelContainer" unique_id=847796825]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer/PanelContainer/MarginContainer" unique_id=151635550]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScalePanel/PanelContainer/MarginContainer" unique_id=151635550]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2137916604]
+[node name="Label" type="Label" parent="Control/ScalePanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=2137916604]
 layout_mode = 2
 text = "Select Wasteland Scale"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2100734612]
+[node name="StartButton" type="Button" parent="Control/ScalePanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=2100734612]
 layout_mode = 2
 text = "Start"
 
-[node name="SizeSlider" type="HSlider" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1637290461]
+[node name="SizeSlider" type="HSlider" parent="Control/ScalePanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=1637290461]
 layout_mode = 2
 min_value = 10.0
 value = 10.0
 tick_count = 10
 ticks_position = 3
 
-[connection signal="pressed" from="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/IntroPanel/MarginContainer/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Control/ScalePanel/PanelContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+

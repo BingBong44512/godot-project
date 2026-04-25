@@ -1,6 +1,6 @@
 extends Label
 
-@onready var game: Node2D = $"../../.."
+@onready var game: Node2D = get_tree().current_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
