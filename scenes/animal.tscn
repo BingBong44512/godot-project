@@ -1,9 +1,108 @@
 [gd_scene format=3 uid="uid://fg0hlnrmfif"]
 
 [ext_resource type="Script" uid="uid://glnl40sk6j1f" path="res://scripts/movement.gd" id="1_8dtbx"]
-[ext_resource type="Texture2D" uid="uid://da4qou5yb25gj" path="res://icon.svg" id="1_rsu6n"]
+[ext_resource type="Texture2D" uid="uid://ckjl44a4rbmd2" path="res://Resources/Animals/preview_nowatermark (1).png" id="2_8dtbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsu6n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybi86"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(114, 560, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7epe"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(148, 458, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c5tq"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(80, 560, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v7ex"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(46, 560, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brjsm"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(12, 458, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieass"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(12, 152, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_236rq"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(250, 492, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb82n"]
+atlas = ExtResource("2_8dtbx")
+region = Rect2(114, 84, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fiknr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybi86")
+}],
+"loop": true,
+"name": &"bear",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7epe")
+}],
+"loop": true,
+"name": &"eagle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c5tq")
+}],
+"loop": true,
+"name": &"elk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v7ex")
+}],
+"loop": true,
+"name": &"moose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brjsm")
+}],
+"loop": true,
+"name": &"owl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieass")
+}],
+"loop": true,
+"name": &"snake",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_236rq")
+}],
+"loop": true,
+"name": &"toad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb82n")
+}],
+"loop": true,
+"name": &"wolf",
+"speed": 5.0
+}]
 
 [node name="RigidBody2D" type="RigidBody2D" unique_id=382702866]
 gravity_scale = 0.0
@@ -12,5 +111,6 @@ script = ExtResource("1_8dtbx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=155289872]
 shape = SubResource("RectangleShape2D_rsu6n")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=53079806]
-texture = ExtResource("1_rsu6n")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=613736816]
+sprite_frames = SubResource("SpriteFrames_fiknr")
+animation = &"wolf"

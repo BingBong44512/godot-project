@@ -7,6 +7,7 @@ signal gambling
 @export var cost: int = 10
 
 func _pressed():
+
 	var game = get_tree().current_scene
 	if game != null and "money" in game and game.money >= cost:
 		game.money -= cost

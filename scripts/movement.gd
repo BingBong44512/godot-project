@@ -2,7 +2,13 @@ extends RigidBody2D
 
 const SPEED = 60
 var thought
+var animal := ""
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+
+func _ready():
+	animated_sprite_2d.play(animal)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if !(thought) or (position.x<thought.x+10 and position.x>thought.x-10  and position.y<thought.y+10 and position.y>thought.y-10):

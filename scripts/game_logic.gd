@@ -5,7 +5,7 @@ const SUNLIGHT = 5
 const P1 := SUNLIGHT * 10 + 5
 const P2 := SUNLIGHT * 100 + 10
 
-var toads :=0
+var toad :=0
 var eagle:=0
 var owl:=0
 var bear:=0
@@ -20,10 +20,10 @@ var timer := 0.0
 @export var health:=0:
 	get:
 		var energy = SUNLIGHT * grass
-		if P1 * (toads+elk+moose+snake) > energy:
-			energy -= P1 * (toads+elk+moose+snake)
+		if P1 * (toad+elk+moose+snake) > energy:
+			energy -= P1 * (toad+elk+moose+snake)
 		else:
-			energy += P1 * (toads+elk+moose+snake)
+			energy += P1 * (toad+elk+moose+snake)
 		if P2 * (eagle+owl+bear+wolf)> energy:
 			energy -= P2 * (eagle+owl+bear+wolf)
 		else:	

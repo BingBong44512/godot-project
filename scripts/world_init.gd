@@ -1,5 +1,6 @@
 extends TileMapLayer
 
+var animal = preload("res://scenes/animal.tscn")
 var sim_timer: float = 0.0
 const SIM_INTERVAL: float = 3.0 # Simulate every 3 seconds
 
@@ -35,6 +36,14 @@ func _unhandled_input(event):
 				game.set(item, game.get(item) + 1)
 				GodLogic.inventory[item] -= 1
 				set_cell(pos, 1, Vector2i(0, 0)) # Set to Grass (Source 1)
+				
+				if item != "grass":
+					var instance = animal.instantiate()
+					instance.animal = item	
+					var mouse_pos = get_global_mouse_position()
+					instance.position.x =mouse_pos.x+randf()*50
+					instance.position.y =mouse_pos.y+randf()*50
+					add_child(instance)
 				get_tree().call_group("hud", "update_inventory")
 		else:
 			print("Out of ", item, "!")
