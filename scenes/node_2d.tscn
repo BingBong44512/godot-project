@@ -288,16 +288,11 @@ texture_region_size = Vector2i(256, 256)
 2:2/0 = 0
 3:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dead"]
-texture = ExtResource("9_dead")
-texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_fws66"]
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_j7wrs")
 sources/1 = SubResource("TileSetAtlasSource_dubn7")
-sources/2 = SubResource("TileSetAtlasSource_dead")
+sources/2 = SubResource("TileSetAtlasSource_j7wrs")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_08kqv"]
 lifetime_randomness = 1.0
