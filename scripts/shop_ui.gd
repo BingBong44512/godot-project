@@ -1,7 +1,7 @@
 extends Control
 
-@onready var item_list = $Panel/VBoxContainer/ScrollContainer/ItemList
-@onready var close_btn = $Panel/VBoxContainer/CloseButton
+@onready var item_list = $Panel/MarginContainer/VBoxContainer/ScrollContainer/ItemList
+@onready var close_btn = $Panel/MarginContainer/VBoxContainer/CloseButton
 
 func _ready():
 	hide()
@@ -12,14 +12,17 @@ func _build_shop():
 	for item_name in GodLogic.shop_data:
 		var data = GodLogic.shop_data[item_name]
 		var hbox = HBoxContainer.new()
-		
+		hbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		hbox.add_theme_constant_override("separation", 10)
+				
 		var label = Label.new()
 		label.text = "%s ($%d)\n%s" % [item_name.capitalize(), data.price, data.desc]
-		label.custom_minimum_size.x = 200
+		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		label.autowrap_mode = TextServer.AUTOWRAP_WORD
 		
 		var buy_btn = Button.new()
 		buy_btn.text = "Buy"
+		buy_btn.set_custom_minimum_size(Vector2(80, 40))
 		buy_btn.pressed.connect(_on_buy_pressed.bind(item_name))
 		
 		hbox.add_child(label)

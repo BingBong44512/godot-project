@@ -3,7 +3,7 @@ extends TileMapLayer
 func _ready():
 	GodLogic.generate_world(self)
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var item = GodLogic.selected_item
 		if item == "" or not item in GodLogic.inventory: return
