@@ -13,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="IntroPanel" type="PanelContainer" parent="Control" unique_id=419086906]
+[node name="IntroPanel" type="PanelContainer" parent="Control" unique_id=1246864050]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,18 +21,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/IntroPanel" unique_id=976792050]
+[node name="MarginContainer" type="MarginContainer" parent="Control/IntroPanel" unique_id=1023098347]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/IntroPanel/MarginContainer" unique_id=2111807236]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/IntroPanel/MarginContainer" unique_id=1231669267]
 layout_mode = 2
 alignment = 1
 
-[node name="IntroLabel" type="Label" parent="Control/IntroPanel/MarginContainer/VBoxContainer" unique_id=1852349981]
+[node name="IntroLabel" type="Label" parent="Control/IntroPanel/MarginContainer/VBoxContainer" unique_id=771214521]
 layout_mode = 2
 text = "It is the year 6767. Humanity has long since died out due to mismanagement of the land and water. Now, it is up to you to revive earth from the barren landscape from the comfort of your shelter (by a drone).
 
@@ -40,7 +40,7 @@ Buy grass, water, and animals from G.O.D. incorporated to repopulate the ecosyst
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="NextButton" type="Button" parent="Control/IntroPanel/MarginContainer/VBoxContainer" unique_id=809795126]
+[node name="NextButton" type="Button" parent="Control/IntroPanel/MarginContainer/VBoxContainer" unique_id=500242966]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Next"

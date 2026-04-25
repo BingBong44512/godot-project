@@ -15,16 +15,33 @@ func _process(delta):
 		sim_timer = 0.0
 		simulate_grass_life()
 
+var is_dragging: bool = false
+var last_drag_pos: Vector2i = Vector2i(-999, -999)
+
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_dragging = event.pressed
+			if is_dragging:
+				handle_action(local_to_map(get_local_mouse_position()))
+	
+	if event is InputEventMouseMotion and is_dragging:
 		var pos = local_to_map(get_local_mouse_position())
-		var item = GodLogic.selected_item
-		if item == "" or not item in GodLogic.inventory: return
-		
-		var game = get_tree().current_scene
-		if GodLogic.inventory[item] > 0:
-			if item == "water":
-				GodLogic.watered_tiles[pos] = Time.get_ticks_msec()
+		if pos != last_drag_pos:
+			handle_action(pos)
+			last_drag_pos = pos
+
+func handle_action(pos: Vector2i):
+	var item = GodLogic.selected_item
+	if item == "" or not item in GodLogic.inventory: return
+	
+	var game = get_tree().current_scene
+	if GodLogic.inventory[item] > 0:
+		if item == "water":
+			# Only water if not already watered recently (cooldown per tile)
+			var now = Time.get_ticks_msec()
+			if not GodLogic.watered_tiles.has(pos) or (now - GodLogic.watered_tiles[pos] > 5000):
+				GodLogic.watered_tiles[pos] = now
 				GodLogic.inventory[item] -= 1
 				gpu_particles_2d.position = get_global_mouse_position()
 				gpu_particles_2d.emitting = true
@@ -35,33 +52,36 @@ func _unhandled_input(event):
 				
 				return
 
-			if item == "grass":
-				var current_source = get_cell_source_id(pos)
-				if current_source == 1: # Already grass
-					return
-				
-				if "grass" in game:
-					game.grass += 1
-					GodLogic.inventory[item] -= 1
-					set_cell(pos, 1, Vector2i(0, 0)) # Set to Grass (Source 1)
-					get_tree().call_group("hud", "update_inventory")
+		if item == "grass":
+			var current_source = get_cell_source_id(pos)
+			if current_source == GodLogic.grass_id: # Already grass
 				return
-
-			# Handle animals
-			if item in game:
-				game.set(item, game.get(item) + 1)
+			
+			if "grass" in game:
+				game.grass += 1
 				GodLogic.inventory[item] -= 1
-				
-				if item != "grass" and item != "water":
-					var instance = animal.instantiate()
-					instance.animal = item	
-					var mouse_pos = get_global_mouse_position()
-					instance.position.x = mouse_pos.x + randf() * 50 -25
-					instance.position.y = mouse_pos.y + randf() * 50 -25
-					add_child(instance)
+				set_cell(pos, GodLogic.grass_id, Vector2i(0, 0))
 				get_tree().call_group("hud", "update_inventory")
-		else:
+			return
+
+		# Handle animals (usually better one-by-one, but we'll allow dragging)
+		if item in game:
+			game.set(item, game.get(item) + 1)
+			GodLogic.inventory[item] -= 1
+			
+			if item != "grass" and item != "water":
+				var instance = animal.instantiate()
+				instance.animal = item	
+				var mouse_pos = get_global_mouse_position()
+				instance.position.x = mouse_pos.x + randf() * 50 - 25
+				instance.position.y = mouse_pos.y + randf() * 50 - 25
+				add_child(instance)
+			get_tree().call_group("hud", "update_inventory")
+	else:
+		# Only print "Out of" once per drag to avoid spam
+		if last_drag_pos == Vector2i(-999, -999):
 			print("Out of ", item, "!")
+
 
 func simulate_grass_life():
 	var game = get_tree().current_scene
@@ -79,23 +99,23 @@ func simulate_grass_life():
 	for pos in used_cells:
 		var source_id = get_cell_source_id(pos)
 
-		if source_id == 1: # Grass
+		if source_id == GodLogic.grass_id: # Grass
 			var neighbors = get_surrounding_cells(pos)
 			var grass_neighbors = 0
 			for n in neighbors:
 				var neighbor_source = get_cell_source_id(n)
-				if neighbor_source == 1:
+				if neighbor_source == GodLogic.grass_id:
 					grass_neighbors += 1
-				elif neighbor_source == 0 or neighbor_source == 2: # Wasteland or Dead Grass
+				elif neighbor_source == GodLogic.wasteland_id or neighbor_source == GodLogic.dead_grass_id:
 					# Spreading logic
 					var n_watered = false
 					if GodLogic.watered_tiles.has(n):
 						if Time.get_ticks_msec() - GodLogic.watered_tiles[n] < 300000:
 							n_watered = true
 
-					var spread_chance = 0.02 if n_watered else 0.002
+					var spread_chance = 0.08 if n_watered else 0.01
 					if randf() < spread_chance:
-						set_cell(n, 1, Vector2i(0, 0))
+						set_cell(n, GodLogic.grass_id, Vector2i(0, 0))
 						if "grass" in game:
 							game.grass += 1
 
@@ -111,15 +131,18 @@ func simulate_grass_life():
 			# Overgrazing check
 			var overgrazed = grazing_load > (game.grass * 2.5) and randf() > 0.7
 
-			if overgrazed:
+			# General survival chance based on water
+			var natural_death = randf() < (0.001 if is_watered else 0.01)
+			
+			if overgrazed or natural_death:
 				tiles_to_die.append(pos)
 				GodLogic.edge_death_timers.erase(pos)
 			elif is_edge and not is_watered:
 				if not GodLogic.edge_death_timers.has(pos):
 					GodLogic.edge_death_timers[pos] = Time.get_ticks_msec()
-
-				# 2 minutes = 120,000 milliseconds
-				if Time.get_ticks_msec() - GodLogic.edge_death_timers[pos] >= 120000:
+				
+				# 5 minutes = 300,000 milliseconds
+				if Time.get_ticks_msec() - GodLogic.edge_death_timers[pos] >= 300000:
 					tiles_to_die.append(pos)
 					GodLogic.edge_death_timers.erase(pos)
 			else:
@@ -127,7 +150,7 @@ func simulate_grass_life():
 				GodLogic.edge_death_timers.erase(pos)
 
 	for pos in tiles_to_die:
-		set_cell(pos, 2, Vector2i(1, 0)) # Set to Dead Grass (Source 2, Tile 1,0)
+		set_cell(pos, GodLogic.dead_grass_id, Vector2i(0, 0))
 		if "grass" in game:
 			game.grass -= 1
 		print("Grass died at ", pos)

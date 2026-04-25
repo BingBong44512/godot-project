@@ -3,7 +3,7 @@ extends Node2D
 const SUNLIGHT = 5
 
 const P1 := SUNLIGHT * 10 + 5
-const P2 := SUNLIGHT * 100 + 10
+const P2 := SUNLIGHT * 50 + 10
 
 var toad :=0
 var eagle:=0
