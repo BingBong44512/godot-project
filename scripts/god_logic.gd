@@ -13,7 +13,7 @@ var watered_tiles = {} # Dictionary of Vector2i -> int (timestamp in msec)
 var shop_data = {
 	"grass": {"price": 10, "desc": "Basic vegetation to start the ecosystem."},
 	"water": {"price": 2, "desc": "Hydrates the land. Prevents grass from dying at the edges."},
-	"toads": {"price": 10, "desc": "Small amphibians. Good for insect control."},
+	"toad": {"price": 10, "desc": "Small amphibians. Good for insect control."},
 	"elk": {"price": 10, "desc": "Majestic herbivores that graze the plains."},
 	"moose": {"price": 10, "desc": "Tough grazers that can handle harsh lands."},
 	"snake": {"price": 10, "desc": "Silent hunters of the undergrowth."},

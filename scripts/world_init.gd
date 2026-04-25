@@ -78,7 +78,7 @@ func simulate_grass_life():
 			# Death conditions:
 			# 1. Edge of patch and not watered
 			# 2. Too many animals (Overgrazing) - using health as proxy for animal density
-			var animal_count = game.toads + game.elk + game.bison + game.snake
+			var animal_count = game.toad + game.elk + game.moose + game.snake
 			var overgrazed = animal_count > (game.grass * 2) and randf() > 0.5
 			
 			if (is_edge and not is_watered) or overgrazed:
