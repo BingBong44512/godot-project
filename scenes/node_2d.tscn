@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://d2l23p2w34la5" path="res://scenes/character_body_2d.tscn" id="1_6e84v"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_6e84v"]
-a = Vector2(514, 1016)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6e84v"]
+distance = -1391.0
 
 [node name="Game" type="Node2D" unique_id=423656970]
 
@@ -16,4 +16,4 @@ position = Vector2(579, 325)
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1832573734]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1193283369]
-shape = SubResource("SegmentShape2D_6e84v")
+shape = SubResource("WorldBoundaryShape2D_6e84v")
