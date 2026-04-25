@@ -5,11 +5,15 @@ var selected_item: String = "grass"
 
 var inventory = {
 	"grass": 0, "toads": 0, "elk": 0, "bison": 0, 
-	"snake": 0, "eagle": 0, "owl": 0, "bear": 0, "wolf": 0
+	"snake": 0, "eagle": 0, "owl": 0, "bear": 0, "wolf": 0,
+	"water": 0
 }
+
+var watered_tiles = {} # Dictionary of Vector2i -> int (timestamp in msec)
 
 var shop_data = {
 	"grass": {"price": 10, "desc": "Basic vegetation to start the ecosystem."},
+	"water": {"price": 2, "desc": "Hydrates the land. Prevents grass from dying at the edges."},
 	"toads": {"price": 10, "desc": "Small amphibians. Good for insect control."},
 	"elk": {"price": 10, "desc": "Majestic herbivores that graze the plains."},
 	"bison": {"price": 10, "desc": "Tough grazers that can handle harsh lands."},
